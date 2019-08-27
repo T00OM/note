@@ -1,0 +1,19 @@
+digraph {
+	
+	//node[shape=polygon,sides=4]
+	node[shape=box fillcolor=grey style=filled];
+
+	a[label="people" style=filled fillcolor=red];
+	b[label="C 控制器\ncontroller\n接口用户请求\n响应"];
+	a->b[label="1.request请求"];
+	b->a[label="5.response响应"];
+
+	c[label="M 模型(model)\npojo\naction\nservice\ndao"];
+	b->c[label="2.请求模型进行处理"];
+	c->b[label="3.处理结果返回"];
+
+	d[label="V 视图(view)"];
+	b->d[label="4.视图渲染\n将数据模型填充\nrequest域"];
+
+	c->d[style=dotted ,label="b/s系统下，模型无法\n将数据填充到视图"];
+}

@@ -1,0 +1,29 @@
+digraph{
+
+    node[shape=box style=filled fillcolor=grey]
+
+    a[label="people" fillcolor=red];
+    b[label="前端控制器\nDispatcherServlet\n接受用户请求\n响应"];
+    a->b[label="1.request请求 url"];
+    b->a[label="11.response响应"];
+
+    c[label="处理器映射器\nHandlerMapping"]; 
+    b->c[label="2.请求查找"];
+    c->b[label="3.返回执行链HandlerExecutionChain{\nHandlerInterceptor1\nHandlerInterceptor2\nHandler\n}"];
+
+    d[label="Handler处理器\nController"];
+    e[label="处理器适配器\nHandlerAdapter\n执行Handler"];
+    e->d[label="5.执行"];
+    d->e[label="6.返回ModelAndView"];
+
+    e->b[label="7.返回ModelAndView"];
+    b->e[label="4.请求适配器执行Handler"];
+
+    f[label="视图解析器\nView resolver"];
+    b->f[label="8.请求进行视图解析"];
+    f->b[label="9.返回view"];
+
+    g[label="view 视图\njsp\nexcel\npdf"];
+    b->g[label="10.视图渲染将\n模型数据填充到\nrequest域"];
+
+}
